@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Picture Validation</title>
+</head>
+
+<body>
+
+    <form id="profileForm" onsubmit="return validateProfile()">
+        <fieldset>
+            <legend><strong>Profile Picture</strong></legend>
+
+            <label for="userId"><strong>User Id</strong></label>
+            <input type="text" id="userId" name="userId"><br><br>
+
+            <label for="picture"><strong>Picture</strong></label>
+            <input type="file" id="picture" name="picture"><br>
+
+            <hr>
+
+            <button type="submit">Submit</button>
+        </fieldset>
+
+        
+
+        <span id="error-message"></span>
+    </form>
+
+    <script>
+        function validateProfile() {
+            var userId = document.getElementById("userId").value;
+            var picture = document.getElementById("picture").files.length;
+            var msg = document.getElementById("error-message");
+            msg.style.color = "red";
+
+            if (userId === "" || isNaN(userId) || parseInt(userId) <= 0) {
+                msg.innerHTML = "User ID cannot be empty and must be a positive number.";
+                return false;
+            }
+
+            if (picture === 0) {
+                msg.innerHTML = "Please upload a picture.";
+                return false;
+            }
+
+            msg.innerHTML = "";
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
